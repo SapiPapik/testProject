@@ -1,0 +1,55 @@
+﻿
+@{
+    var sourceGroups = ViewBag.groups;
+    var gridGroups = new WebGrid(source: sourceGroups, rowsPerPage: 5);
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список групп</title>
+    <style type="text/css">
+        .grid {
+            margin: 4px;
+            border-collapse: collapse;
+            width: 600px;
+        }
+
+        .head {
+            background-color: #E8E8E8;
+            font-weight: bold;
+            color: #FFF;
+        }
+
+        .grid th, .grid td {
+            border: 1px solid #C0C0C0;
+            padding: 5px;
+        }
+
+        .alt {
+            background-color: #E8E8E8;
+            color: #000;
+        }
+
+        .product {
+            width: 200px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Список групп</h1>
+    <div class="grid">
+        @gridGroups.GetHtml(
+                           tableStyle: "grid",
+                           headerStyle: "head",
+                           alternatingRowStyle: "alt",
+                           columns: gridGroups.Columns(
+                               gridGroups.Column("Id", "ID"),
+                               gridGroups.Column("Аbbreviation", "Аббревиатура"),
+                               gridGroups.Column("Curator.Surname", "Куратор")
+                           )
+                       )
+    </div>
+</body>
+</html>
+
