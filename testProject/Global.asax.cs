@@ -12,7 +12,7 @@ using TestProject.DAL.Migrations;
 namespace testProject {
     public class WebApiApplication : System.Web.HttpApplication {
         protected void Application_Start() {
-            //UpdateDatabase();
+            UpdateDatabase();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

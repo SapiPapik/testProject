@@ -7,12 +7,12 @@ namespace TestProject.DAL.Migrations {
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    public sealed class Configuration : DbMigrationsConfiguration<TestProject.DAL.GroupsContext> {
+    public sealed class Configuration : DbMigrationsConfiguration<TestProject.DAL.TestProjectDbContext> {
         public Configuration() {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(TestProject.DAL.GroupsContext context) {
+        protected override void Seed(TestProject.DAL.TestProjectDbContext context) {
             if (!context.Groups.Any(x => x.Id == new Guid("484804D1-4EBF-4F5F-8944-FD6139287FAA"))) {
                 var testCurator = new Curator() {
                     Id = new Guid("484804D1-4EBF-4F5F-8944-FD6139287FAA"),

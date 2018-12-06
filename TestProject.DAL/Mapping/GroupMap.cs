@@ -11,6 +11,7 @@ namespace TestProject.DAL.Mapping {
     public class GroupMap : EntityTypeConfiguration<Group> {
         public GroupMap() {
             ToTable("Groups");
+
             HasKey(g => g.Id);
 
             Property(g => g.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);

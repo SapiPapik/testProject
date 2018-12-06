@@ -34,9 +34,9 @@ namespace testProject.Controllers {
             return Request.CreateResponse(HttpStatusCode.OK, Mapper.Map<GroupViewModel>(group));
         }
 
-        [Route("groups/{groupId}")]
+        [Route("groups/{groupId}/students")]
         [HttpPost]
-        public async Task<HttpResponseMessage> AddUserToGroup(Guid groupId, [FromBody] StudentViewModel student) {
+        public async Task<HttpResponseMessage> AddStudentToGroup(Guid groupId, [FromBody] StudentViewModel student) {
             await _groupService.AddStudentToGroup(groupId, Mapper.Map<StudentDto>(student));
             return Request.CreateResponse(HttpStatusCode.OK);
         }
@@ -48,21 +48,21 @@ namespace testProject.Controllers {
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [Route("groups/groupId")]
+        [Route("groups/{groupId}")]
         [HttpPut]
         public async Task<HttpResponseMessage> EditGroup(Guid groupId, [FromBody]GroupViewModel group) {
             await _groupService.UpdateAsync(groupId, Mapper.Map<GroupDto>(group));
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [Route("groups/groupId")]
-        [HttpPut]
-        public async Task<HttpResponseMessage> DeleteUserFromGroup(Guid groupId, [FromBody]StudentViewModel student) {
-            await _groupService.RemoveStudentFromGroup(groupId, student.Id);
+        [Route("groups/{groupId}/student/{studentId}")]
+        [HttpDelete]
+        public async Task<HttpResponseMessage> DeleteStudentFromGroup(Guid groupId, Guid studentId) {
+            await _groupService.RemoveStudentFromGroup(groupId, studentId);
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
-        [Route("groups/groupId")]
+        [Route("groups/{groupId}")]
         [HttpDelete]
         public async Task<HttpResponseMessage> DeleteGroup(Guid groupId) {
             await _groupService.RemoveAsync(groupId);

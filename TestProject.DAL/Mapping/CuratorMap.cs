@@ -11,6 +11,7 @@ namespace TestProject.DAL.Mapping {
     public class CuratorMap : EntityTypeConfiguration<Curator> {
         public CuratorMap() {
             ToTable("Curators");
+
             HasKey(c => c.Id);
 
             Property(c => c.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);

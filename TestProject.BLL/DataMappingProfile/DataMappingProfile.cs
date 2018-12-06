@@ -14,7 +14,7 @@ namespace TestProject.BLL.DataMappingProfile {
             CreateMap<Group, GroupDto>()
                 .ForMember(g => g.Id, opt => opt.MapFrom(src => src.Id))
                 .ForMember(g => g.Аbbreviation, opt => opt.MapFrom(src => src.Аbbreviation))
-                .ForMember(g => g.CuratorId, opt => opt.MapFrom(src => src.CuratorId))
+                .ForMember(g => g.CuratorId, opt => opt.MapFrom(src => src.CuratorId == Guid.Empty ? null : src.CuratorId))
                 .ForMember(g => g.Curator, opt => opt.MapFrom(src => src.Curator))
                 .ForMember(g => g.Students, opt => opt.MapFrom(src => src.Students))
                 .ReverseMap()
@@ -27,7 +27,7 @@ namespace TestProject.BLL.DataMappingProfile {
                 .ForMember(s => s.Patronymic, opt => opt.MapFrom(src => src.Patronymic))
                 .ForMember(s => s.Birthday, opt => opt.MapFrom(src => src.Birthday))
                 .ForMember(s => s.IsStependint, opt => opt.MapFrom(src => src.IsStependint))
-                .ForMember(s => s.GroupId, opt => opt.MapFrom(src => src.GroupId))
+                .ForMember(s => s.GroupId, opt => opt.MapFrom(src => src.GroupId == Guid.Empty ? null : src.GroupId))
                 .ReverseMap()
                 .ForAllOtherMembers(opt => opt.Ignore());
 

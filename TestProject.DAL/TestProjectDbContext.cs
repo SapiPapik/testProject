@@ -4,8 +4,8 @@ using TestProject.Data.Entity;
 using TestProject.DAL.Mapping;
 
 namespace TestProject.DAL {
-    public class GroupsContext : DbContext {
-        public GroupsContext() : base("GroupsContext") {
+    public class TestProjectDbContext : DbContext {
+        public TestProjectDbContext() : base("TestProjectDbContext") {
 #if DEBUG
             Database.Log = e => Debug.WriteLine(e);
             Configuration.LazyLoadingEnabled = false;

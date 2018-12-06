@@ -60,8 +60,9 @@ namespace TestProject.BLL.Services {
             entity.FirstName = string.IsNullOrEmpty(student.FirstName) ? entity.FirstName : student.FirstName;
             entity.Surname = string.IsNullOrEmpty(student.FirstName) ? entity.Surname : student.Surname;
             entity.Patronymic = string.IsNullOrEmpty(student.Patronymic) ? entity.Patronymic : student.Patronymic;
-            entity.Birthday = student.Birthday == DateTime.MinValue ? entity.Birthday : student.Birthday;
-            entity.IsStependint = student.IsStependint != null ? student.IsStependint : entity.IsStependint;
+            if (student.Birthday != null && student.Birthday < new DateTime(1753, 1, 1)) throw new ArgumentException("Field BirthDate can not be < 01.01.1753");
+            entity.Birthday = student.Birthday ?? entity.Birthday;
+            entity.IsStependint = student.IsStependint ?? entity.IsStependint;
 
             UnitOfWork.GetRepository<Student>().Update(entity);
             await UnitOfWork.CommitAsync();

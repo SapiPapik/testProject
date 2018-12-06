@@ -11,6 +11,7 @@ namespace TestProject.DAL.Mapping {
     public class StudentMap : EntityTypeConfiguration<Student> {
         public StudentMap() {
             ToTable("Students");
+
             HasKey(s => s.Id);
 
             Property(s => s.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);

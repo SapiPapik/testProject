@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Web.Http;
+using Newtonsoft.Json;
 
 namespace testProject {
     public static class WebApiConfig {
         public static void Register(HttpConfiguration config) {
-            // Конфигурация и службы веб-API
-
-            // Маршруты веб-API
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
@@ -21,13 +19,10 @@ namespace testProject {
             config.Formatters.JsonFormatter.SupportedMediaTypes
                 .Add(new MediaTypeHeaderValue("text/html"));
 
-            //config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling
-            //    = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
+            var appXmlType = config.Formatters.XmlFormatter.SupportedMediaTypes.FirstOrDefault(t => t.MediaType == "application/xml");
+            config.Formatters.XmlFormatter.SupportedMediaTypes.Remove(appXmlType);
 
-            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling
-                = Newtonsoft.Json.ReferenceLoopHandling.Serialize;
-            config.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling
-                = Newtonsoft.Json.PreserveReferencesHandling.Objects;
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         }
     }
 }

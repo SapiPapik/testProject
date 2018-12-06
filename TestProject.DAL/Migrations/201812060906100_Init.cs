@@ -11,7 +11,7 @@ namespace TestProject.DAL.Migrations
                 "dbo.Curators",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Guid(nullable: false, identity: true),
                         FirstName = c.String(),
                         Surname = c.String(),
                         Patronymic = c.String(),
@@ -25,7 +25,7 @@ namespace TestProject.DAL.Migrations
                 "dbo.Groups",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Guid(nullable: false, identity: true),
                         Аbbreviation = c.String(),
                         CuratorId = c.Guid(),
                         CreatedAt = c.DateTime(nullable: false),
@@ -40,7 +40,7 @@ namespace TestProject.DAL.Migrations
                 "dbo.Students",
                 c => new
                     {
-                        Id = c.Guid(nullable: false),
+                        Id = c.Guid(nullable: false, identity: true),
                         FirstName = c.String(),
                         Surname = c.String(),
                         Patronymic = c.String(),
@@ -59,8 +59,8 @@ namespace TestProject.DAL.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Students", "GroupId", "dbo.Groups");
             DropForeignKey("dbo.Groups", "CuratorId", "dbo.Curators");
+            DropForeignKey("dbo.Students", "GroupId", "dbo.Groups");
             DropIndex("dbo.Students", new[] { "GroupId" });
             DropIndex("dbo.Groups", new[] { "CuratorId" });
             DropTable("dbo.Students");

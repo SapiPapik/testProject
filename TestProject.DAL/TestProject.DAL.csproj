@@ -50,19 +50,15 @@
   <ItemGroup>
     <Compile Include="Contract\IBaseRepository.cs" />
     <Compile Include="Contract\IUnitOfWork.cs" />
-    <Compile Include="GroupsContext.cs" />
+    <Compile Include="Migrations\201812060906100_Init.cs" />
+    <Compile Include="Migrations\201812060906100_Init.Designer.cs">
+      <DependentUpon>201812060906100_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="TestProjectDbContext.cs" />
     <Compile Include="Mapping\CuratorMap.cs" />
     <Compile Include="Mapping\GroupMap.cs" />
     <Compile Include="Mapping\StudentMap.cs" />
-    <Compile Include="Migrations\201812060627536_Init.cs" />
-    <Compile Include="Migrations\201812060627536_Init.Designer.cs">
-      <DependentUpon>201812060627536_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812060712530_Mapping.cs" />
-    <Compile Include="Migrations\201812060712530_Mapping.Designer.cs">
-      <DependentUpon>201812060712530_Mapping.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\EntityRepository.cs" />
     <Compile Include="UnitOfWork.cs" />
@@ -78,11 +74,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812060627536_Init.resx">
-      <DependentUpon>201812060627536_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812060712530_Mapping.resx">
-      <DependentUpon>201812060712530_Mapping.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812060906100_Init.resx">
+      <DependentUpon>201812060906100_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

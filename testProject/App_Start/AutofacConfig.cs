@@ -32,7 +32,7 @@ namespace testProject {
             //// OPTIONAL: Enable action method parameter injection (RARE).
             //builder.InjectActionInvoker();
 
-            builder.RegisterType<GroupsContext>().As<DbContext>().InstancePerLifetimeScope();
+            builder.RegisterType<TestProjectDbContext>().As<DbContext>().InstancePerLifetimeScope();
             builder.RegisterGeneric(typeof(EntityRepository<>)).As(typeof(IBaseRepository<>));
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(typeof(GroupService).Assembly)
