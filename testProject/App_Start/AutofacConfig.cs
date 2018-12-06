@@ -1,31 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Web;
+﻿using System.Data.Entity;
+using System.Web.Http;
 using System.Web.Mvc;
 using Autofac;
 using Autofac.Integration.Mvc;
-using TestPrject.DAL.Contract;
+using Autofac.Integration.WebApi;
 using TestProject.BLL.Services;
 using TestProject.DAL;
-using TestProject.DAL.Contracts;
+using TestProject.DAL.Contract;
 using TestProject.DAL.Repository;
-using Autofac.Integration.WebApi;
-using testProject;
-using System.Web.Http;
 
-namespace TestProject.Web.App_Start
-{
-    public class AutofacConfing
-    {
-        public static void RegisterComponents()
-        {
+namespace testProject {
+    public class AutofacConfing {
+        public static void RegisterComponents() {
             var builder = new ContainerBuilder();
-
-            // Register your MVC controllers. (MvcApplication is the name of
-            // the class in Global.asax.)
-            builder.RegisterControllers(typeof(WebApiApplication).Assembly);
 
             builder.RegisterApiControllers(typeof(WebApiApplication).Assembly);
 
@@ -46,7 +33,7 @@ namespace TestProject.Web.App_Start
             //builder.InjectActionInvoker();
 
             builder.RegisterType<GroupsContext>().As<DbContext>().InstancePerLifetimeScope();
-            builder.RegisterGeneric(typeof(GlobalRepository<>)).As(typeof(IGlobalRepository<>));
+            builder.RegisterGeneric(typeof(EntityRepository<>)).As(typeof(IBaseRepository<>));
             builder.RegisterType<UnitOfWork>().As<IUnitOfWork>().InstancePerLifetimeScope();
             builder.RegisterAssemblyTypes(typeof(GroupService).Assembly)
                 .Where(t => t.Name.EndsWith("Service"))

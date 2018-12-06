@@ -9,29 +9,23 @@ using testProject.DataMappingProfileWeb;
 using TestProject.BLL.DataMappingProfile;
 using TestProject.DAL.Migrations;
 
-namespace testProject
-{
-    public class WebApiApplication : System.Web.HttpApplication
-    {
-        protected void Application_Start()
-        {
-            UpdateDatabase();
+namespace testProject {
+    public class WebApiApplication : System.Web.HttpApplication {
+        protected void Application_Start() {
+            //UpdateDatabase();
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            TestProject.Web.App_Start.AutofacConfing.RegisterComponents();
-            Mapper.Initialize(cfg =>
-            {
+            AutofacConfing.RegisterComponents();
+            Mapper.Initialize(cfg => {
                 cfg.AddProfile<DataMappingsProfile>();
                 cfg.AddProfile<DataMappingsProfileWeb>();
             });
-            
         }
 
-        private void UpdateDatabase()
-        {
+        private void UpdateDatabase() {
             var migrationConfig = new Configuration();
             var migrator = new DbMigrator(migrationConfig);
             migrator.Update();

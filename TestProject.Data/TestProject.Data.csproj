@@ -48,6 +48,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entity\Base\BaseEntity.cs" />
+    <Compile Include="Entity\Base\IArchive.cs" />
+    <Compile Include="Entity\Base\ICreateAt.cs" />
+    <Compile Include="Entity\Base\IGuidId.cs" />
+    <Compile Include="Entity\Base\IModifiedAt.cs" />
     <Compile Include="Entity\Curator.cs" />
     <Compile Include="Entity\Group.cs" />
     <Compile Include="Entity\Student.cs" />

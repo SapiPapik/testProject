@@ -52,8 +52,8 @@
     <Reference Include="Autofac.Integration.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.Mvc5.4.0.2\lib\net45\Autofac.Integration.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Autofac.Integration.WebApi, Version=4.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.WebApi2.4.1.0\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
+    <Reference Include="Autofac.Integration.WebApi, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.WebApi2.4.0.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
@@ -76,6 +76,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Workflow.ComponentModel" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
@@ -196,13 +197,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
-    <Compile Include="Controllers\Api\CuratorsController.cs" />
-    <Compile Include="Controllers\Api\GroupsController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\Api\StudentsController.cs" />
-    <Compile Include="Controllers\TablesController.cs" />
-    <Compile Include="Controllers\WebGridController.cs" />
+    <Compile Include="Controllers\CuratorsController.cs" />
+    <Compile Include="Controllers\GroupsController.cs" />
+    <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="DataMappingProfileWeb\DataMappingsProfileWeb.cs" />
+    <Compile Include="Filters\ApiExceptionFilterAttribute.cs" />
+    <Compile Include="Filters\Validation\ApiError.cs" />
+    <Compile Include="Filters\Validation\ApiException.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -212,10 +213,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\TestProjectDb.mdf" />
-    <Content Include="App_Data\TestProjectDb_log.ldf">
-      <DependentUpon>TestProjectDb.mdf</DependentUpon>
-    </Content>
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -265,15 +262,14 @@
     <Content Include="Content\Site.css" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Tables\Index.cshtml" />
-    <Content Include="Views\WebGrid\Groups.cshtml" />
-    <Content Include="Views\WebGrid\Students.cshtml" />
-    <Content Include="Views\WebGrid\Curators.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\TestProject.BLL.Contracts\TestProject.BLL.Contracts.csproj">
+      <Project>{842033BE-D18C-479A-9118-7D3BDB0FB364}</Project>
+      <Name>TestProject.BLL.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TestProject.BLL\TestProject.BLL.csproj">
       <Project>{666ff3c3-2daf-42d4-b817-307e81d4da6a}</Project>
       <Name>TestProject.BLL</Name>
@@ -296,7 +292,9 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

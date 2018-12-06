@@ -1,15 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-namespace TestProject.Web.Models
-{
-    public class GroupViewModel
-    {
-        public int Id { get; set; }
+namespace testProject.Models {
+    public class GroupViewModel {
+        public Guid Id { get; set; }
+
         public string Аbbreviation { get; set; }
 
-        public int CuratorId { get; set; }
+        public Guid CuratorId { get; set; }
         public CuratorViewModel Curator { get; set; }
 
-        public IEnumerable<StudentViewModel> Students { get; set; }
+        public ICollection<StudentViewModel> Students { get; set; }
     }
 }
